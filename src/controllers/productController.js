@@ -80,4 +80,12 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.get("", async (req, res) => {
+  try {
+    const product = await Product.find().lean().exec();
+    return res.status(201).send(product);
+  } catch (err) {
+    return res.status(501).send(err.message);
+  }
+});
 module.exports = router;
